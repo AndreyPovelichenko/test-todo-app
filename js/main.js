@@ -1,13 +1,13 @@
 requirejs.config({
-   paths: {
-       jquery: 'bower_components/jquery/dist/jquery',
-       underscore: 'bower_components/underscore/underscore',
-       backbone: 'bower_components/backbone/backbone',
-       text: 'bower_components/text/text',
+    paths: {
+        jquery: 'bower_components/jquery/dist/jquery',
+        underscore: 'bower_components/underscore/underscore',
+        backbone: 'bower_components/backbone/backbone',
+        text: 'bower_components/text/text',
 
-       templates: '../templates',
-       app: 'app'
-   }
+        templates: '../templates',
+        app: 'app'
+    }
 });
 
 requirejs([
