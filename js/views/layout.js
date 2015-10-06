@@ -25,7 +25,7 @@ define([
         createChildren: function() {
             var tasksCollection = new TasksCollection(mockData);
             this.regions = [
-                new AddTaskView(),
+                new AddTaskView({collection: tasksCollection}),
                 new TaskListView({collection: tasksCollection}),
                 new ControlsView()
             ];

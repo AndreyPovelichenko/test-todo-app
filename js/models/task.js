@@ -14,7 +14,7 @@ define([
         },
 
         validate: function(attrs) {
-            if (attrs.title && !attrs.title.trim()) {
+            if (!attrs.title || !attrs.title.trim()) {
                 return "Title can't be empty!";
             }
         },

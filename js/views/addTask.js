@@ -1,7 +1,8 @@
 define([
     'backbone',
+    'models/task',
     'text!templates/addTask.html'
-], function(Backbone, TMPL) {
+], function(Backbone, Task, TMPL) {
 
     var AddTaskView = Backbone.View.extend({
         tagName: 'form',
@@ -20,6 +21,13 @@ define([
 
         createTask: function(event) {
             event.preventDefault();
+            var $newTitle = this.$('#newTitle'),
+                task = new Task({title: $newTitle.val()});
+
+            $newTitle.val("");
+            if (task.isValid()) {
+                this.collection.add(task);
+            }
         }
     });
 

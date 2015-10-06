@@ -7,15 +7,18 @@ define([
         tagName: 'ul',
 
         initialize: function() {
+            this.listenTo(this.collection, "add", this.addOne);
             this.render();
         },
 
         render: function() {
-            this.collection.each(function(task) {
-                var taskView = new TaskView({model: task});
-                taskView.render();
-                this.$el.append(taskView.el);
-            }, this);
+            this.collection.each(this.addOne, this);
+        },
+
+        addOne: function(task) {
+            var taskView = new TaskView({model: task});
+            taskView.render();
+            this.$el.append(taskView.el);
         }
     });
 
