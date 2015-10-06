@@ -1,18 +1,24 @@
 define([
     'underscore',
-    'backbone',
-    'app'
-], function(_, Backbone, App) {
+    'backbone'
+], function(_, Backbone) {
 
     var LayoutView = Backbone.View.extend({
         id: 'taskManager',
 
         initialize: function() {
-            this.createChildren();
-            this.render();
+            this.waitDependencies();
         },
 
-        createChildren: function() {
+        waitDependencies: function() {
+            var self = this;
+            requirejs(['app'], function(App) {
+                self.createChildren(App);
+                self.render();
+            });
+        },
+
+        createChildren: function(App) {
             this.regions = [
                 new App.views.AddTask(),
                 new App.views.TaskList(),
@@ -21,8 +27,8 @@ define([
         },
 
         render: function() {
-            var html = _.pluck(this.regions, 'el');
-            this.$el.html(html.join(''));
+            var elements = _.pluck(this.regions, 'el');
+            this.$el.html(elements);
         }
     });
 

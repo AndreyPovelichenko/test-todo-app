@@ -1,7 +1,7 @@
 define([
     'underscore',
     'backbone',
-    'text!templates/controls'
+    'text!templates/controls.html'
 ], function(_, Backbone, TMPL) {
 
     var ControlsView = Backbone.View.extend({

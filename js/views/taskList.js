@@ -1,7 +1,7 @@
 define([
     'underscore',
     'backbone',
-    'text!templates/taskList'
+    'text!templates/taskList.html'
 ], function(_, Backbone, TMPL) {
 
     var TaskListView = Backbone.View.extend({
