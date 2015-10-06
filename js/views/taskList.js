@@ -1,18 +1,21 @@
 define([
-    'underscore',
     'backbone',
-    'text!templates/taskList.html'
-], function(_, Backbone, TMPL) {
+    'views/task'
+], function(Backbone, TaskView) {
 
     var TaskListView = Backbone.View.extend({
-        template: _.template(TMPL),
+        tagName: 'ul',
 
         initialize: function() {
             this.render();
         },
 
         render: function() {
-
+            this.collection.each(function(task) {
+                var taskView = new TaskView({model: task});
+                taskView.render();
+                this.$el.append(taskView.el);
+            }, this);
         }
     });
 

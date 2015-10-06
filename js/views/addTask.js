@@ -1,11 +1,14 @@
 define([
-    'underscore',
     'backbone',
     'text!templates/addTask.html'
-], function(_, Backbone, TMPL) {
+], function(Backbone, TMPL) {
 
     var AddTaskView = Backbone.View.extend({
         tagName: 'form',
+
+        events: {
+            "submit": "createTask"
+        },
 
         initialize: function() {
             this.render();
@@ -13,6 +16,10 @@ define([
 
         render: function() {
             this.$el.html(TMPL);
+        },
+
+        createTask: function(event) {
+            event.preventDefault();
         }
     });
 

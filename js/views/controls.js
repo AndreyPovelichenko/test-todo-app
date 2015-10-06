@@ -1,18 +1,17 @@
 define([
-    'underscore',
     'backbone',
     'text!templates/controls.html'
-], function(_, Backbone, TMPL) {
+], function(Backbone, TMPL) {
 
     var ControlsView = Backbone.View.extend({
-        template: _.template(TMPL),
+        className: 'controls',
 
         initialize: function() {
             this.render();
         },
 
         render: function() {
-
+            this.$el.html(TMPL);
         }
     });
 

@@ -5,8 +5,10 @@ requirejs.config({
         backbone: '../bower_components/backbone/backbone',
         text: '../bower_components/text/text',
 
-        templates: '../templates',
-        app: 'app'
+        models: 'models',
+        collections: 'collections',
+        views: 'views',
+        templates: '../templates'
     }
 });
 

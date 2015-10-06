@@ -1,28 +1,33 @@
 define([
     'underscore',
-    'backbone'
-], function(_, Backbone) {
+    'backbone',
+    'collections/tasks',
+    'views/addTask',
+    'views/taskList',
+    'views/controls'
+], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView) {
+
+    var mockData = [
+        {title: 'Test task 1'},
+        {title: 'Test task 2'},
+        {title: 'Test task 3'},
+        {title: 'Test task 4'}
+    ];
 
     var LayoutView = Backbone.View.extend({
         id: 'taskManager',
 
         initialize: function() {
-            this.waitDependencies();
+            this.createChildren();
+            this.render();
         },
 
-        waitDependencies: function() {
-            var self = this;
-            requirejs(['app'], function(App) {
-                self.createChildren(App);
-                self.render();
-            });
-        },
-
-        createChildren: function(App) {
+        createChildren: function() {
+            var tasksCollection = new TasksCollection(mockData);
             this.regions = [
-                new App.views.AddTask(),
-                new App.views.TaskList(),
-                new App.views.Controls()
+                new AddTaskView(),
+                new TaskListView({collection: tasksCollection}),
+                new ControlsView()
             ];
         },
 
