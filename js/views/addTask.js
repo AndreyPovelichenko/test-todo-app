@@ -24,8 +24,8 @@ define([
             var $newTitle = this.$('.newTitle'),
                 task = new Task({title: $newTitle.val()});
 
-            $newTitle.val("");
             if (task.isValid()) {
+                $newTitle.val("");
                 this.collection.add(task);
             }
         }

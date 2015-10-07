@@ -6,6 +6,7 @@ define([
 
     var TaskView = Backbone.View.extend({
         tagName: 'li',
+        className: 'task list-group-item',
         template: _.template(TMPL),
 
         events: {
@@ -25,6 +26,7 @@ define([
                 id: this.model.cid
             });
             this.$el.html(this.template(attrs));
+            return this;
         },
 
         editTask: function(event) {

@@ -1,24 +1,23 @@
 define([
-    'underscore',
     'backbone',
     'collections/tasks',
     'views/addTask',
     'views/taskList',
     'views/controls',
-    'text!templates/emptyList.html'
-], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, TMPL) {
+    'text!templates/layout.html'
+], function(Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, TMPL) {
 
     var mockData = [
-        {title: 'Test task 1'},
-        {title: 'Test task 2'},
-        {title: 'Test task 3'},
-        {title: 'Test task 4'}
+        //{title: 'Test task 1'},
+        //{title: 'Test task 2'},
+        //{title: 'Test task 3'},
+        //{title: 'Test task 4'}
     ];
 
     var LayoutView = Backbone.View.extend({
         id: 'taskManager',
 
-        emptyList: TMPL,
+        wrapper: TMPL,
 
         initialize: function() {
             this.createChildren();
@@ -41,9 +40,14 @@ define([
         },
 
         render: function() {
-            var elements = _.pluck(this.regions, 'el');
-            this.$el.html(elements);
-            if (this.regions.taskList.collection.isEmpty()) {
+            var addTask = this.regions.addTask,
+                taskList = this.regions.taskList,
+                controls = this.regions.controls;
+
+            this.$el.html([addTask.el, this.wrapper, controls.el]);
+            this.$(".content").append(taskList.el);
+
+            if (taskList.collection.isEmpty()) {
                 this.hideList();
             }
         },
@@ -53,7 +57,7 @@ define([
                 controls = this.regions.controls;
             taskList.$el.show();
             controls.$el.show();
-            this.$(".empty").remove();
+            this.$(".empty").hide();
         },
 
         hideList: function() {
@@ -61,7 +65,7 @@ define([
                 controls = this.regions.controls;
             taskList.$el.hide();
             controls.$el.hide();
-            this.$el.append(this.emptyList);
+            this.$(".empty").show();
         }
     });
 

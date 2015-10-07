@@ -6,7 +6,7 @@ define([
     var App = {
         init: function() {
             var layout = new LayoutView();
-            $('body').append(layout.el);
+            $('.wrapper').append(layout.el);
             console.log('Initialization is complete!');
         }
     };

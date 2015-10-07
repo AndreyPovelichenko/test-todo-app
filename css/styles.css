@@ -1,12 +1,33 @@
-/** {*/
-    /*margin: 0;*/
-    /*padding: 0;*/
-/*}*/
+html,
+body {
+    height: 100%;
+}
 
-/*h1 {*/
-    /*margin-bottom: 20px;*/
-/*}*/
+.wrapper {
+    width: 350px;
+    height: 100%;
+}
+    .wrapper h1,
+    .wrapper form {
+        margin-bottom: 20px;
+    }
 
+.task {
+    position: relative;
+}
+    .task .actions {
+        position: absolute;
+        top: 30%;
+        right: 10px;
+    }
+        .task .edit,
+        .controls .completeAll {
+            margin-right: 5px;
+        }
+
+.is-hidden {
+    display: none;
+}
 .is-complete {
     text-decoration: line-through;
 }

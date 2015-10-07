@@ -5,6 +5,7 @@ define([
 
     var TaskListView = Backbone.View.extend({
         tagName: 'ul',
+        className: 'list-group',
 
         initialize: function() {
             this.listenTo(this.collection, "add", this.addOne);
@@ -18,8 +19,7 @@ define([
 
         addOne: function(task) {
             var taskView = new TaskView({model: task});
-            taskView.render();
-            this.$el.append(taskView.el);
+            this.$el.append(taskView.render().el);
         },
 
         updateList: function() {
