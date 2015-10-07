@@ -43,6 +43,9 @@ define([
         render: function() {
             var elements = _.pluck(this.regions, 'el');
             this.$el.html(elements);
+            if (this.regions.taskList.collection.isEmpty()) {
+                this.hideList();
+            }
         },
 
         showList: function() {
@@ -58,7 +61,7 @@ define([
                 controls = this.regions.controls;
             taskList.$el.hide();
             controls.$el.hide();
-            taskList.$el.after(this.emptyList);
+            this.$el.append(this.emptyList);
         }
     });
 
