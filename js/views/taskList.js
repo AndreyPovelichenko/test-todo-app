@@ -4,13 +4,11 @@ define([
 ], function(Backbone, TaskView) {
 
     var TaskListView = Backbone.View.extend({
-        tagName: 'ul',
-        className: 'list-group',
+        el: '#taskList',
 
         initialize: function() {
             this.listenTo(this.collection, "add", this.addOne);
             this.listenTo(this.collection, "update reset", this.updateList);
-            this.render();
         },
 
         render: function() {

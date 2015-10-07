@@ -1,12 +1,11 @@
 define([
-    'jquery',
     'views/layout'
-], function($, LayoutView) {
+], function(LayoutView) {
 
     var App = {
         init: function() {
             var layout = new LayoutView();
-            $('.wrapper').append(layout.el);
+            layout.render();
             console.log('Initialization is complete!');
         }
     };

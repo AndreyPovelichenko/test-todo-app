@@ -1,28 +1,26 @@
 define([
+    'underscore',
     'backbone',
     'collections/tasks',
     'views/addTask',
     'views/taskList',
     'views/controls',
-    'text!templates/layout.html'
-], function(Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, TMPL) {
+    'views/highcharts'
+], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, HighchartsView) {
 
     var mockData = [
-        //{title: 'Test task 1'},
-        //{title: 'Test task 2'},
-        //{title: 'Test task 3'},
-        //{title: 'Test task 4'}
+        {title: 'Test task 1'},
+        {title: 'Test task 2'},
+        {title: 'Test task 3'},
+        {title: 'Test task 4'}
     ];
 
     var LayoutView = Backbone.View.extend({
-        id: 'taskManager',
-
-        wrapper: TMPL,
+        el: '#taskManager',
 
         initialize: function() {
             this.createChildren();
             this.bindChildrenEvents();
-            this.render();
         },
 
         createChildren: function() {
@@ -30,42 +28,43 @@ define([
             this.regions = {
                 addTask: new AddTaskView({collection: tasksCollection}),
                 taskList: new TaskListView({collection: tasksCollection}),
-                controls: new ControlsView({collection: tasksCollection})
+                controls: new ControlsView({collection: tasksCollection}),
+                highcharts: new HighchartsView({collection: tasksCollection})
             };
         },
 
         bindChildrenEvents: function() {
-            this.listenTo(this.regions.taskList, "taskList:new", this.showList);
             this.listenTo(this.regions.taskList, "taskList:empty", this.hideList);
+            this.listenTo(this.regions.taskList, "taskList:new", this.showList);
         },
 
         render: function() {
-            var addTask = this.regions.addTask,
-                taskList = this.regions.taskList,
-                controls = this.regions.controls;
-
-            this.$el.html([addTask.el, this.wrapper, controls.el]);
-            this.$(".content").append(taskList.el);
-
-            if (taskList.collection.isEmpty()) {
+            _.each(this.regions, function(view) {
+                view.render();
+            });
+            if (this.regions.taskList.collection.isEmpty()) {
                 this.hideList();
             }
         },
 
-        showList: function() {
-            var taskList = this.regions.taskList,
-                controls = this.regions.controls;
-            taskList.$el.show();
-            controls.$el.show();
-            this.$(".empty").hide();
+        _filterRegionsExclude: function(key) {
+            return _.omit(this.regions, key);
         },
 
         hideList: function() {
-            var taskList = this.regions.taskList,
-                controls = this.regions.controls;
-            taskList.$el.hide();
-            controls.$el.hide();
-            this.$(".empty").show();
+            var regions = this._filterRegionsExclude('addTask');
+            _.each(regions, function(view) {
+                view.$el.hide();
+            });
+            this.$(".emptyList").show();
+        },
+
+        showList: function() {
+            var regions = this._filterRegionsExclude('addTask');
+            _.each(regions, function(view) {
+                view.$el.show();
+            });
+            this.$(".emptyList").hide();
         }
     });
 

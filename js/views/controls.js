@@ -4,15 +4,11 @@ define([
 ], function(Backbone, TMPL) {
 
     var ControlsView = Backbone.View.extend({
-        className: 'controls',
+        el: '#controls',
 
         events: {
             "click .completeAll": "completeAll",
             "click .removeAll": "removeAll"
-        },
-
-        initialize: function() {
-            this.render();
         },
 
         render: function() {

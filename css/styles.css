@@ -1,14 +1,10 @@
 html,
-body {
+body,
+#taskManager {
     height: 100%;
 }
-
-.wrapper {
-    width: 350px;
-    height: 100%;
-}
-    .wrapper h1,
-    .wrapper form {
+    #taskManager h1,
+    #taskManager form {
         margin-bottom: 20px;
     }
 
@@ -21,13 +17,14 @@ body {
         right: 10px;
     }
         .task .edit,
-        .controls .completeAll {
+        .completeAll {
             margin-right: 5px;
         }
 
-.is-hidden {
+.emptyList {
     display: none;
 }
+
 .is-complete {
     text-decoration: line-through;
 }
