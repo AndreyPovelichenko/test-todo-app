@@ -19,16 +19,8 @@ define([
             }
         },
 
-        _toggleStatus: function(state) {
+        toggleStatus: function(state) {
             this.set("status", state);
-        },
-
-        complete: function() {
-            this._toggleStatus(true);
-        },
-
-        incomplete: function() {
-            this._toggleStatus(false);
         }
     });
 

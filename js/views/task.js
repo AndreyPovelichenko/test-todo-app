@@ -10,16 +10,20 @@ define([
 
         events: {
             "click .edit": "editTask",
-            "click .delete": "deleteTask"
+            "click .delete": "deleteTask",
+            "change input:checkbox": "toggleStatus"
         },
 
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
             this.listenTo(this.model, "destroy", this.remove);
+            this.listenTo(this.model.collection, "reset", this.remove);
         },
 
         render: function() {
-            var attrs = this.model.toJSON();
+            var attrs = _.extend(this.model.toJSON(), {
+                id: this.model.cid
+            });
             this.$el.html(this.template(attrs));
         },
 
@@ -32,6 +36,12 @@ define([
         deleteTask: function(event) {
             event.preventDefault();
             this.model.destroy();
+        },
+
+        toggleStatus: function() {
+            var $checkbox = this.$("input:checkbox"),
+                state = $checkbox.is(":checked");
+            this.model.toggleStatus(state);
         }
     });
 

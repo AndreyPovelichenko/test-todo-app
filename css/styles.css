@@ -6,3 +6,7 @@
 /*h1 {*/
     /*margin-bottom: 20px;*/
 /*}*/
+
+.is-complete {
+    text-decoration: line-through;
+}

@@ -1,4 +1,14 @@
-<input type="checkbox"/>
-<span><%= title %></span>
+<% if (status) { %>
+    <label for="<%= id %>" class="is-complete">
+        <input id="<%= id %>" type="checkbox" checked/>
+        <%= title %>
+    </label>
+<% } else { %>
+    <label for="<%= id %>">
+        <input id="<%= id %>" type="checkbox"/>
+        <%= title %>
+    </label>
+<% } %>
+
 <a href="#" class="edit">Edit</a>
 <a href="#" class="delete">Delete</a>

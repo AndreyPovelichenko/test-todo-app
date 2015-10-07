@@ -21,7 +21,7 @@ define([
 
         createTask: function(event) {
             event.preventDefault();
-            var $newTitle = this.$('#newTitle'),
+            var $newTitle = this.$('.newTitle'),
                 task = new Task({title: $newTitle.val()});
 
             $newTitle.val("");

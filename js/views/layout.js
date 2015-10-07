@@ -4,8 +4,9 @@ define([
     'collections/tasks',
     'views/addTask',
     'views/taskList',
-    'views/controls'
-], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView) {
+    'views/controls',
+    'text!templates/emptyList.html'
+], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, TMPL) {
 
     var mockData = [
         {title: 'Test task 1'},
@@ -17,23 +18,47 @@ define([
     var LayoutView = Backbone.View.extend({
         id: 'taskManager',
 
+        emptyList: TMPL,
+
         initialize: function() {
             this.createChildren();
+            this.bindChildrenEvents();
             this.render();
         },
 
         createChildren: function() {
             var tasksCollection = new TasksCollection(mockData);
-            this.regions = [
-                new AddTaskView({collection: tasksCollection}),
-                new TaskListView({collection: tasksCollection}),
-                new ControlsView()
-            ];
+            this.regions = {
+                addTask: new AddTaskView({collection: tasksCollection}),
+                taskList: new TaskListView({collection: tasksCollection}),
+                controls: new ControlsView({collection: tasksCollection})
+            };
+        },
+
+        bindChildrenEvents: function() {
+            this.listenTo(this.regions.taskList, "taskList:new", this.showList);
+            this.listenTo(this.regions.taskList, "taskList:empty", this.hideList);
         },
 
         render: function() {
             var elements = _.pluck(this.regions, 'el');
             this.$el.html(elements);
+        },
+
+        showList: function() {
+            var taskList = this.regions.taskList,
+                controls = this.regions.controls;
+            taskList.$el.show();
+            controls.$el.show();
+            this.$(".empty").remove();
+        },
+
+        hideList: function() {
+            var taskList = this.regions.taskList,
+                controls = this.regions.controls;
+            taskList.$el.hide();
+            controls.$el.hide();
+            taskList.$el.after(this.emptyList);
         }
     });
 
