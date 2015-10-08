@@ -1,9 +1,8 @@
 define([
-    'jquery',
     'backbone',
     'highcharts',
     'highcharts3d'
-], function($, Backbone) {
+], function(Backbone) {
 
     var HighchartsView = Backbone.View.extend({
         el: '#statistic',

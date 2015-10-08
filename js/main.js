@@ -25,9 +25,8 @@ requirejs([
     'jquery',
     'underscore',
     'backbone',
-    'app',
-    'text!templates/main.html'
-], function($, _, Backbone, App, BaseMarkup) {
-    $('#taskManager').html(BaseMarkup);
-    App.init();
+    'router'
+], function($, _, Backbone, Router) {
+    new Router();
+    Backbone.history.start();
 });

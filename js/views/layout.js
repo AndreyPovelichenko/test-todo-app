@@ -5,8 +5,9 @@ define([
     'views/addTask',
     'views/taskList',
     'views/controls',
-    'views/highcharts'
-], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, HighchartsView) {
+    'views/highcharts',
+    'text!templates/layout.html'
+], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, HighchartsView, BaseMarkup) {
 
     var mockData = [
         {title: 'Test task 1'},
@@ -19,8 +20,13 @@ define([
         el: '#taskManager',
 
         initialize: function() {
+            this.buildWrapper();
             this.createChildren();
             this.bindChildrenEvents();
+        },
+
+        buildWrapper: function() {
+            this.$el.html(BaseMarkup);
         },
 
         createChildren: function() {
