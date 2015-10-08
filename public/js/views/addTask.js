@@ -1,5 +1,5 @@
 define([
-    'backbone',
+    '../../bower_components/backbone/backbone',
     'models/task',
     'text!templates/addTask.html'
 ], function(Backbone, Task, TMPL) {

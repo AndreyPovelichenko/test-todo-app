@@ -1,5 +1,5 @@
 define([
-    'backbone',
+    '../bower_components/backbone/backbone',
     'views/layout'
 ], function(Backbone, LayoutView) {
 

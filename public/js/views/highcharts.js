@@ -1,5 +1,5 @@
 define([
-    'backbone',
+    '../../bower_components/backbone/backbone',
     'highcharts',
     'highcharts3d'
 ], function(Backbone) {

@@ -1,5 +1,5 @@
 define([
-    'backbone'
+    '../../bower_components/backbone/backbone'
 ], function(Backbone) {
 
     var Task = Backbone.Model.extend({

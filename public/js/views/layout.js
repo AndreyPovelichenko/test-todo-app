@@ -1,5 +1,5 @@
 define([
-    'underscore',
+    '../../bower_components/underscore/underscore',
     'backbone',
     'collections/tasks',
     'views/addTask',
