@@ -1,5 +1,5 @@
 define([
-    '../../bower_components/backbone/backbone',
+    'backbone',
     'text!templates/controls.html'
 ], function(Backbone, TMPL) {
 

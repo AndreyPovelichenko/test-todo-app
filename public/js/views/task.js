@@ -1,5 +1,5 @@
 define([
-    '../../bower_components/underscore/underscore',
+    'underscore',
     'backbone',
     'text!templates/task.html'
 ], function (_, Backbone, TMPL) {
