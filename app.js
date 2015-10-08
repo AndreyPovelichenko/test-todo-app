@@ -1,5 +1,6 @@
 var router = require('./app/router'),
     express = require('express'),
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     app = express();
 
@@ -7,14 +8,10 @@ var router = require('./app/router'),
 app.set('views', './app/views');
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 // init additional routes
 router.init(app);
-
-// 404 page
-app.use(function(req, res) {
-    res.status(404).render('404');
-});
 
 // start server listening
 var server = app.listen(3000, function() {

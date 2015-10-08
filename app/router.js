@@ -1,13 +1,29 @@
-var Router = function() {};
+var TasksController = require('./controllers/tasks');
 
-Router.prototype = {
+var Router = {
+
     init: function(app) {
+        // root
         app.get('/', this.index);
+
+        // tasks API
+        app.get('/tasks', TasksController.getAll);
+        app.post('/tasks', TasksController.create);
+        app.put('/tasks/:id', TasksController.update);
+        app.delete('/tasks/:id', TasksController.destroy);
+
+        // 404 page
+        app.use(this.default);
     },
 
     index: function(req, res) {
         res.render('index');
+    },
+
+    default: function(req, res) {
+        res.status(404).render('404');
     }
+
 };
 
-module.exports = new Router();
+module.exports = Router;

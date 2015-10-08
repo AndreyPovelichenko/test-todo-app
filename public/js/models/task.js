@@ -3,6 +3,8 @@ define([
 ], function(Backbone) {
 
     var Task = Backbone.Model.extend({
+        idAttribute: "_id",
+
         defaults: {
             status: false
         },

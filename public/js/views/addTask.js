@@ -21,7 +21,7 @@ define([
 
             event.preventDefault();
             if (task.isValid()) {
-                this.collection.add(task);
+                this.collection.create(task);
                 $newTitle.val("");
             }
         }

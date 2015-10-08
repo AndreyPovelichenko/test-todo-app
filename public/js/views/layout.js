@@ -9,13 +9,6 @@ define([
     'text!templates/layout.html'
 ], function(_, Backbone, TasksCollection, AddTaskView, TaskListView, ControlsView, HighchartsView, BaseMarkup) {
 
-    var mockData = [
-        {title: 'Test task 1'},
-        {title: 'Test task 2'},
-        {title: 'Test task 3'},
-        {title: 'Test task 4'}
-    ];
-
     var LayoutView = Backbone.View.extend({
         el: '#taskManager',
 
@@ -30,7 +23,8 @@ define([
         },
 
         createChildren: function() {
-            var tasksCollection = new TasksCollection(mockData);
+            var tasksCollection = new TasksCollection([]);
+            tasksCollection.fetch();
             this.regions = {
                 addTask: new AddTaskView({collection: tasksCollection}),
                 taskList: new TaskListView({collection: tasksCollection}),
