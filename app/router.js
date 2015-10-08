@@ -2,15 +2,11 @@ var Router = function() {};
 
 Router.prototype = {
     init: function(app) {
-        app.get('/', this.getIndex);
-
-        app.use(function(req, res) {
-            res.status(404).send('Sorry cant find that!');
-        });
+        app.get('/', this.index);
     },
 
-    getIndex: function(req, res) {
-        res.render('index', {});
+    index: function(req, res) {
+        res.render('index');
     }
 };
 
