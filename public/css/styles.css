@@ -7,6 +7,9 @@ body,
     #taskManager form {
         margin-bottom: 20px;
     }
+    #taskManager label {
+        cursor: pointer;
+    }
 
 .task {
     position: relative;

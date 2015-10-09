@@ -6,11 +6,14 @@ var Router = {
         // root
         app.get('/', this.index);
 
-        // tasks API
+        // tasks API endpoints
         app.get('/tasks', TasksController.getAll);
         app.post('/tasks', TasksController.create);
         app.put('/tasks/:id', TasksController.update);
         app.delete('/tasks/:id', TasksController.destroy);
+        // additional endpoints
+        app.put('/tasks', TasksController.updateStatusForAll);
+        app.delete('/tasks', TasksController.destroyAll);
 
         // 404 page
         app.use(this.default);

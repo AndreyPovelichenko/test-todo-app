@@ -21,8 +21,12 @@ define([
             }
         },
 
-        toggleStatus: function(state) {
-            this.set("status", state);
+        toggleStatus: function(state, options) {
+            if (options && options.request) {
+                this.save("status", state, {wait: true});
+            } else {
+                this.set("status", state);
+            }
         }
     });
 

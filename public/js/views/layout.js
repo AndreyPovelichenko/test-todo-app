@@ -14,22 +14,39 @@ define([
 
         initialize: function() {
             this.buildWrapper();
-            this.createChildren();
-            this.bindChildrenEvents();
+            this.createDependencies();
+            this.waitDependencies();
         },
 
         buildWrapper: function() {
             this.$el.html(BaseMarkup);
         },
 
+        createDependencies: function() {
+            this.collection = new TasksCollection();
+        },
+
+        waitDependencies: function() {
+            var self = this;
+            self.collection.fetch({
+                success: function() {
+                    self.buildLayout();
+                }
+            });
+        },
+
+        buildLayout: function() {
+            this.createChildren();
+            this.bindChildrenEvents();
+            this.render();
+        },
+
         createChildren: function() {
-            var tasksCollection = new TasksCollection();
-            tasksCollection.fetch();
             this.regions = {
-                addTask: new AddTaskView({collection: tasksCollection}),
-                taskList: new TaskListView({collection: tasksCollection}),
-                controls: new ControlsView({collection: tasksCollection}),
-                highcharts: new HighchartsView({collection: tasksCollection})
+                addTask: new AddTaskView({collection: this.collection}),
+                taskList: new TaskListView({collection: this.collection}),
+                controls: new ControlsView({collection: this.collection}),
+                highcharts: new HighchartsView({collection: this.collection})
             };
         },
 
@@ -42,7 +59,7 @@ define([
             _.each(this.regions, function(view) {
                 view.render();
             });
-            if (this.regions.taskList.collection.isEmpty()) {
+            if (this.collection.isEmpty()) {
                 this.hideList();
             }
         },

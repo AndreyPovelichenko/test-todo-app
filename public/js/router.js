@@ -9,8 +9,7 @@ define([
         },
 
         index: function() {
-            var layout = new LayoutView();
-            layout.render();
+            new LayoutView();
         }
     });
 

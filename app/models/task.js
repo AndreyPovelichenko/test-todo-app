@@ -6,8 +6,7 @@ schema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
-        trim: true,
-        minlength: [1, "Title can't be empty!"]
+        trim: true
     },
 
     status: {

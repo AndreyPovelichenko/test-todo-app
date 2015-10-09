@@ -2,12 +2,12 @@
 
 <div class="checkbox-inline">
 <% if (status) { %>
-    <label for="<%= id %>" class="is-complete">
-        <input id="<%= id %>" type="checkbox" checked/> <%= title %>
+    <label for="<%= _id %>" class="is-complete">
+        <input id="<%= _id %>" type="checkbox" checked/> <%= title %>
     </label>
 <% } else { %>
-    <label for="<%= id %>">
-        <input id="<%= id %>" type="checkbox"/> <%= title %>
+    <label for="<%= _id %>">
+        <input id="<%= _id %>" type="checkbox"/> <%= title %>
     </label>
 <% } %>
 </div>

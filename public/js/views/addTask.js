@@ -20,10 +20,8 @@ define([
                 task = new Task({title: $newTitle.val()});
 
             event.preventDefault();
-            if (task.isValid()) {
-                this.collection.create(task);
-                $newTitle.val("");
-            }
+            $newTitle.val("");
+            this.collection.create(task, {wait: true});
         }
     });
 
