@@ -8,20 +8,17 @@ var TasksController = {
 
     getAll: function(req, res) {
         var self = this;
-        Task.find().exec(function(error, todos) {
-            console.log("response", error, todos);
-            if (error) { return self._buildErrorResponse(res, error); }
-            res.json(todos);
+        Task.find().exec(function(err, tasks) {
+            if (err) return self._buildErrorResponse(res, err);
+            res.json(tasks);
         });
     },
 
     create: function(req, res) {
-        console.log("create action", req.body);
         var self = this;
         Task.create(req.body, function(err, task) {
-            //console.log("response", err, task);
-            if (err) { return self._buildErrorResponse(res, err); }
-            res.json(task);
+            if (err) return self._buildErrorResponse(res, err);
+            res.status(201).json(task);
         });
     },
 
@@ -30,7 +27,11 @@ var TasksController = {
     },
 
     destroy: function(req, res) {
-
+        var self = this;
+        Task.remove({ _id: req.params.id }, function (err) {
+            if (err) return self._buildErrorResponse(res, err);
+            res.sendStatus(200);
+        });
     }
 
 };

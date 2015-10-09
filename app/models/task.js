@@ -15,6 +15,8 @@ schema = new mongoose.Schema({
         default: false
     }
 
+}, {
+    versionKey: false
 });
 
 module.exports = mongoose.model("Task", schema);

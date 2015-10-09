@@ -23,7 +23,7 @@ define([
         },
 
         createChildren: function() {
-            var tasksCollection = new TasksCollection([]);
+            var tasksCollection = new TasksCollection();
             tasksCollection.fetch();
             this.regions = {
                 addTask: new AddTaskView({collection: tasksCollection}),

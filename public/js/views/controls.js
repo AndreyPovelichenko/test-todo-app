@@ -25,6 +25,7 @@ define([
 
         removeAll: function() {
             this.collection.reset();
+            this.collection.sync('update', this.collection);
         }
     });
 
