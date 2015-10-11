@@ -1,0 +1,33 @@
+html,
+body,
+#taskManager {
+    height: 100%;
+}
+    #taskManager h1,
+    #taskManager form {
+        margin-bottom: 20px;
+    }
+    #taskManager label {
+        cursor: pointer;
+    }
+
+.task {
+    position: relative;
+}
+    .task .actions {
+        position: absolute;
+        top: 30%;
+        right: 10px;
+    }
+        .task .edit,
+        .completeAll {
+            margin-right: 5px;
+        }
+
+.emptyList {
+    display: none;
+}
+
+.is-complete {
+    text-decoration: line-through;
+}

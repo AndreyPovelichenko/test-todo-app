@@ -1,0 +1,20 @@
+<% if (status) { %> <div class="has-success"> <% } %>
+
+<div class="checkbox-inline">
+<% if (status) { %>
+    <label for="<%= _id %>" class="is-complete">
+        <input id="<%= _id %>" type="checkbox" checked/> <%= title %>
+    </label>
+<% } else { %>
+    <label for="<%= _id %>">
+        <input id="<%= _id %>" type="checkbox"/> <%= title %>
+    </label>
+<% } %>
+</div>
+
+<div class="actions">
+    <a href="#" class="edit"><span class="glyphicon glyphicon-pencil"></span></a>
+    <a href="#" class="delete"><span class="glyphicon glyphicon-remove"></span></a>
+</div>
+
+<% if (status) { %> </div> <% } %>
